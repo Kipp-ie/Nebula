@@ -18,6 +18,9 @@
 And more to come!
 
 
+## Roadmap
+
+The roadmap can be found [here](https://github.com/users/Kipp-ie/projects/1)!
 
 
 ## Authors
