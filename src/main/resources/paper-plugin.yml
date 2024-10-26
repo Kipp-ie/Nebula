@@ -1,0 +1,4 @@
+name: Nebula
+version: '0.2-BETA'
+main: project.nebula.Nebula
+api-version: '1.21'
