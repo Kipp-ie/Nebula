@@ -21,13 +21,10 @@ public class onDiscordChat extends ListenerAdapter {
             if (!event.getAuthor().isSystem()) {
                 if (event.getChannel().equals(event.getJDA().getTextChannelById(config.getString("Discord_ChatID")))) {
                     var mm = MiniMessage.miniMessage();
-                    Component parsed = mm.deserialize("<bold><blue>Discord</bold></blue>");
-                    Bukkit.broadcastMessage(parsed + " - " + event.getAuthor().getName() + " | " + event.getMessage().getContentDisplay());
+                    Component parsed = mm.deserialize("<bold><blue>Discord</bold></blue> - " + event.getAuthor().getName() + " | " + event.getMessage().getContentDisplay());
+                    Bukkit.broadcast(parsed);
             }
-
             }
-
-
         }
     }
 }
