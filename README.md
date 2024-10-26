@@ -12,7 +12,9 @@
 - Join and leave messages
 - Tablists
 - Scoreboards
-And more to come!
+- MOTD
+- Moderation
+- And more to come!
 
 
 ## Roadmap
