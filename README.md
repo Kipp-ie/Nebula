@@ -28,5 +28,5 @@ The roadmap can be found [here](https://github.com/users/Kipp-ie/projects/1)!
 
 ## Contributing
 
-Contributions are always welcome, please know that we can review, adjust or deny any contributions that are not in our code of conduct (COS.md). Please read them before making a contribution! Thanks!
+Contributions are always welcome, please read through our code of conduct before submitting any changes. Thanks!
 
