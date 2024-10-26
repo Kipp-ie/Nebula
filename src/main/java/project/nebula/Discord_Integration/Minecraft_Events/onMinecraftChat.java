@@ -14,8 +14,10 @@ import java.util.Objects;
 
 public class onMinecraftChat implements Listener {
     private final JDA jda;
-    public onMinecraftChat(JDA jda) {
+    private final FileConfiguration config;
+    public onMinecraftChat(JDA jda, FileConfiguration config) {
         this.jda = jda;
+        this.config = config;
     }
 
     @EventHandler
@@ -26,6 +28,8 @@ public class onMinecraftChat implements Listener {
         embed.setColor(Color.BLUE);
         embed.setFooter("Chat placed in " + Bukkit.getName() );
         embed.setTimestamp(LocalDateTime.now());
+
+        jda.getTextChannelById(config.getInt("Discord_ChatID")).sendMessageEmbeds(embed.build()).queue();
 
     }
 }

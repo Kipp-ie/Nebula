@@ -14,8 +14,10 @@ import java.util.Objects;
 
 public class onMinecraftAdvancement implements Listener {
     private final JDA jda;
-    public onMinecraftAdvancement(JDA jda) {
+    private final FileConfiguration config;
+    public onMinecraftAdvancement(JDA jda, FileConfiguration config) {
         this.jda = jda;
+        this.config = config;
     }
     @EventHandler
     public void onPlayerAchievement(PlayerAdvancementDoneEvent event) {
@@ -27,6 +29,8 @@ public class onMinecraftAdvancement implements Listener {
             embed.setFooter("Event in " + Bukkit.getName() );
             embed.setTimestamp(LocalDateTime.now());
             embed.setDescription(Objects.requireNonNull(event.getAdvancement().getDisplay().displayName().toString()));
+
+            jda.getTextChannelById(config.getInt("Discord_ChatID")).sendMessageEmbeds(embed.build()).queue();
 
         }
 

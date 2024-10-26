@@ -14,8 +14,10 @@ import java.util.Objects;
 
 public class onMinecraftDeath implements Listener {
     private final JDA jda;
-    public onMinecraftDeath(JDA jda) {
+    private final FileConfiguration config;
+    public onMinecraftDeath(JDA jda, FileConfiguration config) {
         this.jda = jda;
+        this.config = config;
     }
     @EventHandler
     public void onDeath(PlayerDeathEvent event){
@@ -25,5 +27,8 @@ public class onMinecraftDeath implements Listener {
         embed.setColor(Color.RED);
         embed.setFooter("Death happened in " + Bukkit.getName() );
         embed.setTimestamp(LocalDateTime.now());
+
+        jda.getTextChannelById(config.getInt("Discord_ChatID")).sendMessageEmbeds(embed.build()).queue();
+
     }
 }

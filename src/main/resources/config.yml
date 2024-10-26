@@ -1,0 +1,29 @@
+# Welcome to Nebula.
+
+# ----------------------------------------------------------------------------------------
+# EULA
+# By accepting our EULA you agree to:
+# 1. Not selling this plugin.
+# 2. Not blocking any mention of Nebula (For example blocking /nebula)
+# 3. If you bought this plugin, you should refund it, Nebula is free and always will be. https://github.com/Kipp-ie/Nebula
+
+eula: false
+
+# ----------------------------------------------------------------------------------------
+
+# ----------------------------------------------------------------------------------------
+# Module Settings * Any info about the modules can be found in our wiki! https://github.com/Kipp-ie/Nebula
+
+Discord_Integration: true
+Joinleave_Messages: true
+MOTD: true
+Scoreboard: true
+Tablist: true
+
+# ----------------------------------------------------------------------------------------
+
+# ----------------------------------------------------------------------------------------
+# Discord Integration Settings (Ignore if Discord_Integration module is disabled.
+Discord_Bottoken: "" # The bot token of your Discord Bot
+Discord_ChatID: "" # The channel where events should be posted like chats, deaths, joins, leaves etc.
+
