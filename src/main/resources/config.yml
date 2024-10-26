@@ -11,19 +11,27 @@ eula: false
 
 # ----------------------------------------------------------------------------------------
 
+
 # ----------------------------------------------------------------------------------------
 # Module Settings * Any info about the modules can be found in our wiki! https://github.com/Kipp-ie/Nebula
-
 Discord_Integration: true
 Joinleave_Messages: true
 MOTD: true
 Scoreboard: true
 Tablist: true
-
 # ----------------------------------------------------------------------------------------
 
+
 # ----------------------------------------------------------------------------------------
-# Discord Integration Settings (Ignore if Discord_Integration module is disabled.
+# Discord Integration Settings (Ignore if Discord_Integration module is false).
 Discord_Bottoken: "" # The bot token of your Discord Bot
 Discord_ChatID: "" # The channel where events should be posted like chats, deaths, joins, leaves etc.
+# ----------------------------------------------------------------------------------------
 
+
+# ----------------------------------------------------------------------------------------
+# Join/Leave Messages Settings (Ignore if Joinleave_Messages module is false).
+Join_Message_Format: "" # Use [player] for the player name, colors can be used like <blue></blue>
+Leave_Message_Format: "" # Use [player] for the player name, colors can be used like <blue></blue>
+# Any additional formatting can be found in our wiki! https://github.com/Kipp-ie/Nebula
+# ----------------------------------------------------------------------------------------

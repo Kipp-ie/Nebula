@@ -23,12 +23,18 @@ public class onMinecraftDeath implements Listener {
     public void onDeath(PlayerDeathEvent event){
         EmbedBuilder embed = new EmbedBuilder();
         embed.setDescription(event.getDeathMessage());
-        embed.setAuthor(event.getEntity().getDisplayName()).setImage("https://mc-heads.net/avatar/" + event.getEntity().getUniqueId() + "/avatar.png");
+        embed.setAuthor(event.getPlayer().getName(), null ,"https://mc-heads.net/avatar/" + event.getPlayer().getUniqueId() + "/avatar.png");
         embed.setColor(Color.RED);
-        embed.setFooter("Death happened in " + Bukkit.getName() );
+        embed.setFooter("Death happened in " + Bukkit.getServer().getName() );
         embed.setTimestamp(LocalDateTime.now());
 
-        jda.getTextChannelById(config.getInt("Discord_ChatID")).sendMessageEmbeds(embed.build()).queue();
+        if (jda.getTextChannelById(config.getString("Discord_ChatID")) == null) {
+            Bukkit.getLogger().warning("--- Nebula | Error ---");
+            Bukkit.getLogger().warning("Nebula - Nebula encountered an error while searching for: *Discord_ChatID*, make sure that the ID in the config is valid.");
+            Bukkit.getLogger().warning("--- Nebula | Error ---");
+        } else {
+            jda.getTextChannelById(config.getString("Discord_ChatID")).sendMessageEmbeds(embed.build()).queue();
+        }
 
     }
 }

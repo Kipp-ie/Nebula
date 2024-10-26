@@ -15,13 +15,16 @@ public class onDiscordChat extends ListenerAdapter {
     }
     @Override
     public void onMessageReceived(@NotNull MessageReceivedEvent event) {
-        if (event.getAuthor().isBot() ^ event.getAuthor().isSystem()) { //If a message is posted from a bot or system, ignore.
+        if (event.getAuthor().isBot()) {//If a message is posted from a bot or system, ignore.
             return; //Stop the code.
-        } else { //If author is not bot or system then:
-            if (event.getChannel().equals(event.getJDA().getTextChannelById(config.getInt("chatID")))) {
-                var mm = MiniMessage.miniMessage();
-                Component parsed = mm.deserialize("<bold><blue>Discord</bold></blue>");
-                Bukkit.broadcastMessage(parsed + " - " + event.getAuthor().getName() + " | " + event.getMessage().getContentDisplay());
+        } else {//If author is not bot or system then:
+            if (!event.getAuthor().isSystem()) {
+                if (event.getChannel().equals(event.getJDA().getTextChannelById(config.getString("Discord_ChatID")))) {
+                    var mm = MiniMessage.miniMessage();
+                    Component parsed = mm.deserialize("<bold><blue>Discord</bold></blue>");
+                    Bukkit.broadcastMessage(parsed + " - " + event.getAuthor().getName() + " | " + event.getMessage().getContentDisplay());
+            }
+
             }
 
 

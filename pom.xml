@@ -6,7 +6,7 @@
 
     <groupId>project.nebula.Nebula</groupId>
     <artifactId>Nebula</artifactId>
-    <version>0.2-BETA</version>
+    <version>0.3-BETA</version>
     <packaging>jar</packaging>
 
     <name>Nebula</name>

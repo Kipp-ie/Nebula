@@ -24,12 +24,18 @@ public class onMinecraftChat implements Listener {
     public void onMessage(AsyncPlayerChatEvent event) {
         EmbedBuilder embed = new EmbedBuilder();
         embed.setDescription(event.getMessage());
-        embed.setAuthor(event.getPlayer().getDisplayName()).setImage("https://mc-heads.net/avatar/" + event.getPlayer().getUniqueId() + "/avatar.png");
+        embed.setAuthor(event.getPlayer().getName(), null ,"https://mc-heads.net/avatar/" + event.getPlayer().getUniqueId() + "/avatar.png");
         embed.setColor(Color.BLUE);
-        embed.setFooter("Chat placed in " + Bukkit.getName() );
+        embed.setFooter("Chat placed in " + Bukkit.getServer().getName() );
         embed.setTimestamp(LocalDateTime.now());
 
-        jda.getTextChannelById(config.getInt("Discord_ChatID")).sendMessageEmbeds(embed.build()).queue();
+        if (jda.getTextChannelById(config.getString("Discord_ChatID")) == null) {
+            Bukkit.getLogger().warning("--- Nebula | Error ---");
+            Bukkit.getLogger().warning("Nebula - Nebula encountered an error while searching for: *Discord_ChatID*, make sure that the ID in the config is valid.");
+            Bukkit.getLogger().warning("--- Nebula | Error ---");
+        } else {
+            jda.getTextChannelById(config.getString("Discord_ChatID")).sendMessageEmbeds(embed.build()).queue();
+        }
 
     }
 }

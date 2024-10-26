@@ -25,15 +25,21 @@ public class onMinecraftLeave implements Listener {
     public void onPlayerQuit(PlayerQuitEvent event) {
         EmbedBuilder embed = new EmbedBuilder();
         embed.setDescription(event.getQuitMessage());
-        embed.setAuthor(event.getPlayer().getDisplayName()).setImage("https://mc-heads.net/avatar/" + event.getPlayer().getUniqueId() + "/avatar.png");
+        embed.setAuthor(event.getPlayer().getName(), null ,"https://mc-heads.net/avatar/" + event.getPlayer().getUniqueId() + "/avatar.png");
         embed.setColor(Color.RED);
-        embed.setFooter("Event happened in " + Bukkit.getName() );
+        embed.setFooter("Left " + Bukkit.getServer().getName() );
         embed.setTimestamp(LocalDateTime.now());
 
-        jda.getTextChannelById(config.getInt("Discord_ChatID")).sendMessageEmbeds(embed.build()).queue();
+        if (jda.getTextChannelById(config.getString("Discord_ChatID")) == null) {
+            Bukkit.getLogger().warning("--- Nebula | Error ---");
+            Bukkit.getLogger().warning("Nebula - Nebula encountered an error while searching for: *Discord_ChatID*, make sure that the ID in the config is valid.");
+            Bukkit.getLogger().warning("--- Nebula | Error ---");
+        } else {
+            jda.getTextChannelById(config.getString("Discord_ChatID")).sendMessageEmbeds(embed.build()).queue();
+        }
 
-        if (Bukkit.getOnlinePlayers().isEmpty()) {
-            jda.getPresence().setActivity(Activity.playing(Bukkit.getName()));
+        if (Bukkit.getOnlinePlayers().size() == 1) {
+            jda.getPresence().setActivity(Activity.playing(Bukkit.getServer().getName()));
             jda.getPresence().setStatus(OnlineStatus.IDLE);
 
         } else {
