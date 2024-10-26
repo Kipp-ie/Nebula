@@ -21,7 +21,7 @@ public class onMinecraftLeave implements Listener {
         String leave_message = config.getString("Leave_Message_Format").replace("[player]", event.getPlayer().getName());
         var mm = MiniMessage.miniMessage();
         Component parsed = mm.deserialize(leave_message);
-        event.setQuitMessage(parsed.toString());
+        event.quitMessage(parsed);
 
     }
 }

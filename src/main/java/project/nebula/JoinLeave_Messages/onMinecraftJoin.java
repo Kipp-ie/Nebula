@@ -23,7 +23,7 @@ public class onMinecraftJoin implements Listener {
         String join_message = config.getString("Join_Message_Format").replace("[player]", event.getPlayer().getName());
         var mm = MiniMessage.miniMessage();
         Component parsed = mm.deserialize(join_message);
-        event.setJoinMessage(parsed.toString());
+        event.joinMessage(parsed);
 
     }
 
