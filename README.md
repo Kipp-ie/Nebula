@@ -25,6 +25,7 @@ The roadmap can be found [here](https://github.com/users/Kipp-ie/projects/1)!
 ## Contributors
 
 - [@Kipp-ie](https://www.github.com/Kipp-ie)
+- [@RedNetty](https://www.github.com/RedNetty)
 
 ## Contributing
 
