@@ -22,7 +22,7 @@
 The roadmap can be found [here](https://github.com/users/Kipp-ie/projects/1)!
 
 
-## Authors
+## Contributors
 
 - [@Kipp-ie](https://www.github.com/Kipp-ie)
 
