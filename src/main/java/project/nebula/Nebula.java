@@ -1,22 +1,23 @@
 package project.nebula;
 
+import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.JDABuilder;
 import net.dv8tion.jda.api.OnlineStatus;
 import net.dv8tion.jda.api.entities.Activity;
+import net.dv8tion.jda.api.entities.emoji.Emoji;
 import net.dv8tion.jda.api.requests.GatewayIntent;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
-import project.nebula.Discord_Integration.Discord_Events.onAdminPanelButtonInteraction;
-import project.nebula.Discord_Integration.Discord_Events.onDiscordChat;
-import project.nebula.Discord_Integration.Discord_Events.onDiscordJoin;
-import project.nebula.Discord_Integration.Discord_Events.onDiscordLeave;
+import project.nebula.Discord_Integration.Discord_Events.*;
 import project.nebula.Discord_Integration.Minecraft_Events.onMinecraftChat;
 import project.nebula.Discord_Integration.Minecraft_Events.onMinecraftDeath;
 import project.nebula.Discord_Integration.Minecraft_Events.onMinecraftJoin;
 import project.nebula.JoinLeave_Messages.onMinecraftLeave;
 
+import java.awt.*;
 import java.time.Duration;
+import java.time.LocalDateTime;
 
 public final class Nebula extends JavaPlugin {
     private JDA jda;
@@ -40,7 +41,8 @@ public final class Nebula extends JavaPlugin {
                         new onDiscordJoin(),
                         new onDiscordLeave(),
                         new onAdminPanelButtonInteraction(),
-                        new onAdminPanelButtonInteraction()
+                        new onAdminPanelButtonInteraction(),
+                        new onGuildReady(getConfig())
                 );
                 return builder.build();
 
@@ -82,7 +84,6 @@ public final class Nebula extends JavaPlugin {
             }
             Bukkit.getLogger().info("Nebula - Startup complete");
             Bukkit.getLogger().info("--------------------");
-
         }
 
     }
@@ -92,6 +93,20 @@ public final class Nebula extends JavaPlugin {
         // Shutdown Nebula
         Bukkit.getLogger().info("--------------------");
         Bukkit.getLogger().info("Nebula - Shutting down");
+
+        EmbedBuilder embed = new EmbedBuilder();
+        embed.setTitle(Emoji.fromUnicode("U+1F534").getFormatted() + " | " + getConfig().getString("Server_Name"));
+        embed.setDescription("Server is now offline.");
+        embed.setColor(Color.RED);
+        embed.setTimestamp(LocalDateTime.now());
+        if (jda.getTextChannelById(getConfig().getString("Discord_ChatID")) == null) {
+            Bukkit.getLogger().warning("--- Nebula | Error ---");
+            Bukkit.getLogger().warning("Nebula - Nebula encountered an error while searching for: *Discord_ChatID*, make sure that the ID in the config is valid.");
+            Bukkit.getLogger().warning("--- Nebula | Error ---");
+        } else {
+            jda.getTextChannelById(getConfig().getString("Discord_ChatID")).sendMessageEmbeds(embed.build()).queue();
+        }
+
         if (getConfig().getBoolean("Discord_Integration")) {
             if (!(jda == null)) {
                 jda.shutdown(); //Shutting down Discord Bot

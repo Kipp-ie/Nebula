@@ -3,6 +3,7 @@ package project.nebula.JoinLeave_Messages;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.minimessage.MiniMessage;
 import org.bukkit.Bukkit;
+import org.bukkit.Sound;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -24,6 +25,12 @@ public class onMinecraftJoin implements Listener {
         var mm = MiniMessage.miniMessage();
         Component parsed = mm.deserialize(join_message);
         event.joinMessage(parsed);
+
+        for (Player player : Bukkit.getOnlinePlayers())
+        {
+            player.playSound(player.getLocation(), Sound.ENTITY_EXPERIENCE_ORB_PICKUP, 1, 1);
+            player.sendActionBar(parsed);
+        }
 
     }
 
