@@ -10,8 +10,8 @@
 eula: false
 
 # ----------------------------------------------------------------------------------------
-
-
+# Server Information
+Server_Name: ""
 # ----------------------------------------------------------------------------------------
 # Module Settings * Any info about the modules can be found in our wiki! https://github.com/Kipp-ie/Nebula
 Discord_Integration: true
