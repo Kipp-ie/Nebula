@@ -55,7 +55,7 @@ public final class Nebula extends JavaPlugin {
     @Override
     public void onEnable() {
         // Startup Nebula
-        saveResource("config.yml", false);
+        saveDefaultConfig();
 
         Bukkit.getLogger().info("--------------------");
         Bukkit.getLogger().info("Nebula - Hello! ( ⸝⸝•ᴗ•⸝⸝ )੭⁾⁾");
