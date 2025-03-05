@@ -10,16 +10,16 @@
 
 - Discord Chat integration
 - Join and leave messages
-- Tablists
-- Scoreboards
-- MOTD
-- Moderation
+- Tablists (WIP)
+- Scoreboards (WIP)
+- MOTD (WIP)
+- Moderation (WIP)
 - And more to come!
 
 
 ## Roadmap
 
-The roadmap can be found [here](https://github.com/users/Kipp-ie/projects/1)!
+The roadmap can be found [here](https://github.com/orgs/DevTeamNebula/projects/1)!
 
 
 ## Contributors
