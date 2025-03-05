@@ -21,11 +21,13 @@ public class onMinecraftJoin implements Listener {
         this.jda = jda;
         this.config = config;
     }
+
+
     @EventHandler
     public void onPlayerJoin(PlayerJoinEvent event) {
         EmbedBuilder embed = new EmbedBuilder();
-        embed.setDescription(event.getJoinMessage());
-        embed.setAuthor(event.getPlayer().getName(), null ,"https://mc-heads.net/avatar/" + event.getPlayer().getUniqueId() + "/avatar.png");
+        embed.setDescription(event.getJoinMessage().replace("§e", ""));
+        embed.setAuthor(event.getPlayer().getName().replace("§e", ""), null ,"https://mc-heads.net/avatar/" + event.getPlayer().getUniqueId() + "/avatar.png");
         embed.setColor(Color.GREEN);
         embed.setFooter("Joined " + Bukkit.getServer().getName() );
         embed.setTimestamp(LocalDateTime.now());

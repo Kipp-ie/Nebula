@@ -24,7 +24,7 @@ public class onMinecraftLeave implements Listener {
     @EventHandler
     public void onPlayerQuit(PlayerQuitEvent event) {
         EmbedBuilder embed = new EmbedBuilder();
-        embed.setDescription(event.getQuitMessage());
+        embed.setDescription(event.getQuitMessage().replace("§e", ""));
         embed.setAuthor(event.getPlayer().getName(), null ,"https://mc-heads.net/avatar/" + event.getPlayer().getUniqueId() + "/avatar.png");
         embed.setColor(Color.RED);
         embed.setFooter("Left " + Bukkit.getServer().getName() );
