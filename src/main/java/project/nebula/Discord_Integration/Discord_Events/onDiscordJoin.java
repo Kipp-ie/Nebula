@@ -11,8 +11,8 @@ public class onDiscordJoin extends ListenerAdapter {
     @Override
     public void onGuildMemberJoin(@NotNull GuildMemberJoinEvent event) { //When someone joins guild/server then:
         var mm = MiniMessage.miniMessage();
-        Component parsed = mm.deserialize("<b><blue>Discord</blue></b>");
-        Bukkit.broadcastMessage(parsed + " - " + event.getMember().getEffectiveName() + " | Joined the Discord server!");
+        Component parsed = mm.deserialize("<b><blue>Discord</blue></b> - " + event.getMember().getEffectiveName() + " | Joined the Discord server!");
+        Bukkit.broadcast(parsed);
 
     }
 }
