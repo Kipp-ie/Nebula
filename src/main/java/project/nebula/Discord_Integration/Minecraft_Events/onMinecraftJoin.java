@@ -16,6 +16,8 @@ import java.awt.*;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
+import static org.bukkit.Bukkit.getServer;
+
 public class onMinecraftJoin implements Listener {
     private final JDA jda;
     private final FileConfiguration config;
@@ -29,8 +31,6 @@ public class onMinecraftJoin implements Listener {
         embed.setDescription(event.getJoinMessage());
         embed.setAuthor(event.getPlayer().getName(), null ,"https://mc-heads.net/avatar/" + event.getPlayer().getUniqueId() + "/avatar.png");
         embed.setColor(Color.GREEN);
-        embed.setFooter("Joined " + Bukkit.getServer().getName() );
-        embed.setTimestamp(LocalDateTime.now());
         if (jda.getTextChannelById(config.getString("Discord_ChatID")) == null) {
             Bukkit.getLogger().warning("--- Nebula | Error ---");
             Bukkit.getLogger().warning("Nebula - Nebula encountered an error while searching for: *Discord_ChatID*, make sure that the ID in the config is valid.");
@@ -77,10 +77,9 @@ public class onMinecraftJoin implements Listener {
 
                 StringBuilder onlinePlayers = new StringBuilder(new String());
 
-                for (int i = 0; i < Bukkit.getOnlinePlayers().toArray().length; i++) {
-
-                    onlinePlayers.append(Bukkit.getOnlinePlayers().toArray()[i] + "\n");
-
+                for (Player player : getServer().getOnlinePlayers()) {
+                    String playername = player.getName();
+                    onlinePlayers.append(playername + "\n");
                 }
                 embed2.addField("Version", Bukkit.getMinecraftVersion(), false);
                 embed2.addField("IP", Bukkit.getIp(), false);

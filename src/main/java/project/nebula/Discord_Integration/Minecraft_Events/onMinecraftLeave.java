@@ -16,6 +16,8 @@ import java.awt.*;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
+import static org.bukkit.Bukkit.getServer;
+
 public class onMinecraftLeave implements Listener {
     private final JDA jda;
     private final FileConfiguration config;
@@ -29,8 +31,6 @@ public class onMinecraftLeave implements Listener {
         embed.setDescription(event.getQuitMessage());
         embed.setAuthor(event.getPlayer().getName(), null ,"https://mc-heads.net/avatar/" + event.getPlayer().getUniqueId() + "/avatar.png");
         embed.setColor(Color.RED);
-        embed.setFooter("Left " + Bukkit.getServer().getName() );
-        embed.setTimestamp(LocalDateTime.now());
 
         if (jda.getTextChannelById(config.getString("Discord_ChatID")) == null) {
             Bukkit.getLogger().warning("--- Nebula | Error ---");
@@ -41,7 +41,7 @@ public class onMinecraftLeave implements Listener {
         }
 
         if (Bukkit.getOnlinePlayers().isEmpty()) {
-            jda.getPresence().setActivity(Activity.playing(Bukkit.getServer().getName()));
+            jda.getPresence().setActivity(Activity.playing(getServer().getName()));
             jda.getPresence().setStatus(OnlineStatus.IDLE);
 
             if (!(jda.getTextChannelById(config.get("Discord_StatusEmbedID").toString()).getTopic() == "")) {
@@ -76,11 +76,17 @@ public class onMinecraftLeave implements Listener {
 
                 StringBuilder onlinePlayers = new StringBuilder(new String());
 
-                for (int i = 0; i < Bukkit.getOnlinePlayers().toArray().length; i++) {
+                for (Player player : getServer().getOnlinePlayers()) {
+                    String playername = player.getName();
 
-                    onlinePlayers.append(Bukkit.getOnlinePlayers().toArray()[i] + "\n");
+                    if (!(playername == event.getPlayer().getName())) {
+                        onlinePlayers.append(playername + "\n");
+                    }
 
                 }
+
+
+
                 embed2.addField("Version", Bukkit.getMinecraftVersion(), false);
                 embed2.addField("IP", Bukkit.getIp(), false);
                 embed2.addField("Players", onlinePlayers.toString(), false);
