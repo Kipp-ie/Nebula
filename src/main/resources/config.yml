@@ -35,3 +35,11 @@ Join_Message_Format: "" # Use [player] for the player name, colors can be used l
 Leave_Message_Format: "" # Use [player] for the player name, colors can be used like <blue></blue>
 # Any additional formatting can be found in our wiki! https://github.com/Kipp-ie/Nebula
 # ----------------------------------------------------------------------------------------
+
+
+# ----------------------------------------------------------------------------------------
+# Tablist settings
+Tablist_Header: ""
+Tablist_Footer: ""
+# Any additional formatting can be found in our wiki! https://github.com/Kipp-ie/Nebula
+# ----------------------------------------------------------------------------------------
