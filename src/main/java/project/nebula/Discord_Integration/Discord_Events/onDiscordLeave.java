@@ -12,8 +12,8 @@ public class onDiscordLeave extends ListenerAdapter {
     @Override
     public void onGuildMemberRemove(@NotNull GuildMemberRemoveEvent event) {//If someone leaves the guild/server then:
         var mm = MiniMessage.miniMessage();
-        Component parsed = mm.deserialize("<bold><blue>Discord</bold></blue>");
-        Bukkit.broadcastMessage(parsed + " - " + event.getMember().getEffectiveName() + " | Left the Discord server.");
+        Component parsed = mm.deserialize("<b><blue>Discord</blue></b> - " + event.getMember().getEffectiveName() + " | Left the Discord server.");
+        Bukkit.broadcast(parsed);
 
     }
 }

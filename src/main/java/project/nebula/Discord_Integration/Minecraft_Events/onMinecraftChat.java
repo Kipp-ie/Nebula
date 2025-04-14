@@ -26,8 +26,6 @@ public class onMinecraftChat implements Listener {
         embed.setDescription(event.getMessage());
         embed.setAuthor(event.getPlayer().getName(), null ,"https://mc-heads.net/avatar/" + event.getPlayer().getUniqueId() + "/avatar.png");
         embed.setColor(Color.BLUE);
-        embed.setFooter("Chat placed in " + Bukkit.getServer().getName() );
-        embed.setTimestamp(LocalDateTime.now());
 
         if (jda.getTextChannelById(config.getString("Discord_ChatID")) == null) {
             Bukkit.getLogger().warning("--- Nebula | Error ---");
