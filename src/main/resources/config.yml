@@ -26,6 +26,7 @@ Tablist: true
 # Discord Integration Settings (Ignore if Discord_Integration module is false).
 Discord_Bottoken: "" # The bot token of your Discord Bot
 Discord_ChatID: "" # The channel where events should be posted like chats, deaths, joins, leaves etc.
+Discord_StatusEmbedID: ""
 # ----------------------------------------------------------------------------------------
 
 

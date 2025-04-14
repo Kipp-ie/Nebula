@@ -40,15 +40,56 @@ public class onMinecraftLeave implements Listener {
             jda.getTextChannelById(config.getString("Discord_ChatID")).sendMessageEmbeds(embed.build()).queue();
         }
 
-        if (Bukkit.getOnlinePlayers().size() == 1) {
+        if (Bukkit.getOnlinePlayers().isEmpty()) {
             jda.getPresence().setActivity(Activity.playing(Bukkit.getServer().getName()));
             jda.getPresence().setStatus(OnlineStatus.IDLE);
+
+            if (!(jda.getTextChannelById(config.get("Discord_StatusEmbedID").toString()).getTopic() == "")) {
+                EmbedBuilder embed2 = new EmbedBuilder();
+
+                embed2.setTitle(config.get("Server_Name").toString() + " | Server Status");
+                embed2.setDescription("Server online");
+                embed2.setColor(Color.GREEN);
+
+
+                embed2.addField("Version", Bukkit.getMinecraftVersion(), false);
+                embed2.addField("IP", Bukkit.getIp(), false);
+                embed2.addField("Players", "There are currently no players online.", false);
+
+                jda.getTextChannelById(config.get("Discord_StatusEmbedID").toString()).retrieveMessageById(jda.getTextChannelById(config.get("Discord_StatusEmbedID").toString()).getTopic()).queue(message ->
+                        message.editMessageEmbeds(embed2.build()).queue());
+
+
+            }
 
         } else {
             jda.getPresence().setActivity(Activity.watching(Bukkit.getOnlinePlayers().size() + " player(s) online!"));
             jda.getPresence().setStatus(OnlineStatus.DO_NOT_DISTURB);
+
+            if (!(jda.getTextChannelById(config.get("Discord_StatusEmbedID").toString()).getTopic() == "")) {
+
+                EmbedBuilder embed2 = new EmbedBuilder();
+
+                embed2.setTitle(config.get("Server_Name").toString() + " | Server Status");
+                embed2.setDescription("Server online");
+                embed2.setColor(Color.GREEN);
+
+                StringBuilder onlinePlayers = new StringBuilder(new String());
+
+                for (int i = 0; i < Bukkit.getOnlinePlayers().toArray().length; i++) {
+
+                    onlinePlayers.append(Bukkit.getOnlinePlayers().toArray()[i] + "\n");
+
+                }
+                embed2.addField("Version", Bukkit.getMinecraftVersion(), false);
+                embed2.addField("IP", Bukkit.getIp(), false);
+                embed2.addField("Players", onlinePlayers.toString(), false);
+
+                jda.getTextChannelById(config.get("Discord_StatusEmbedID").toString()).retrieveMessageById(jda.getTextChannelById(config.get("Discord_StatusEmbedID").toString()).getTopic()).queue(message ->
+                        message.editMessageEmbeds(embed2.build()).queue());
+
+
+
+            }
         }
-
-
-    }
-}
+}}

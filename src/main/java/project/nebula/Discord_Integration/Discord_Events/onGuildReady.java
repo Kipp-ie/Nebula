@@ -32,5 +32,22 @@ public class onGuildReady extends ListenerAdapter {
         } else {
             event.getJDA().getTextChannelById(config.getString("Discord_ChatID")).sendMessageEmbeds(embed.build()).queue();
         }
+
+        if (config.get("Discord_StatusEmbedID").equals("")) {
+            return;
+        }
+
+        EmbedBuilder embed2 = new EmbedBuilder();
+
+        embed2.setTitle(config.get("Server_Name").toString() + " | Server Status");
+        embed2.setDescription("Server online");
+        embed2.setColor(Color.GREEN);
+
+        embed2.addField("Version", Bukkit.getMinecraftVersion(), false);
+        embed2.addField("IP", Bukkit.getIp(), false);
+
+        event.getJDA().getTextChannelById(config.get("Discord_StatusEmbedID").toString()).retrieveMessageById(event.getJDA().getTextChannelById(config.get("Discord_StatusEmbedID").toString()).getTopic()).queue(message ->
+                message.editMessageEmbeds(embed2.build()).queue());
+
     }
 }
