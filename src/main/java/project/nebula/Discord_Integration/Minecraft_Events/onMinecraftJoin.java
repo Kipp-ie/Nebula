@@ -41,7 +41,7 @@ public class onMinecraftJoin implements Listener {
 
 
 
-        if (Bukkit.getOnlinePlayers().isEmpty()) {
+        if (Bukkit.getOnlinePlayers().size() - 1 == 0) {
             jda.getPresence().setActivity(Activity.playing(Bukkit.getServer().getName()));
             jda.getPresence().setStatus(OnlineStatus.IDLE);
 
@@ -64,7 +64,7 @@ public class onMinecraftJoin implements Listener {
             }
 
         } else {
-            jda.getPresence().setActivity(Activity.watching(Bukkit.getOnlinePlayers().size() + " player(s) online!"));
+            jda.getPresence().setActivity(Activity.watching((Bukkit.getOnlinePlayers().size() + 1) + " player(s) online!"));
             jda.getPresence().setStatus(OnlineStatus.DO_NOT_DISTURB);
 
             if (!(jda.getTextChannelById(config.get("Discord_StatusEmbedID").toString()).getTopic() == "")) {
