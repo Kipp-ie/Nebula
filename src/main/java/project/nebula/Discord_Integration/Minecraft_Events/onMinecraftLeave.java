@@ -4,6 +4,7 @@ import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.OnlineStatus;
 import net.dv8tion.jda.api.entities.Activity;
+import net.dv8tion.jda.api.entities.emoji.Emoji;
 import org.bukkit.Bukkit;
 import org.bukkit.Sound;
 import org.bukkit.configuration.file.FileConfiguration;
@@ -28,8 +29,7 @@ public class onMinecraftLeave implements Listener {
     @EventHandler
     public void onPlayerQuit(PlayerQuitEvent event) {
         EmbedBuilder embed = new EmbedBuilder();
-        embed.setDescription(event.getQuitMessage());
-        embed.setAuthor(event.getPlayer().getName(), null ,"https://mc-heads.net/avatar/" + event.getPlayer().getUniqueId() + "/avatar.png");
+        embed.setAuthor(Emoji.fromUnicode("U+1F534") + " ・ " + event.getPlayer().getName(), null ,"https://mc-heads.net/avatar/" + event.getPlayer().getUniqueId() + "/avatar.png");
         embed.setColor(Color.RED);
 
         if (jda.getTextChannelById(config.getString("Discord_ChatID")) == null) {

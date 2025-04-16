@@ -2,6 +2,7 @@ package project.nebula.Discord_Integration.Minecraft_Events;
 
 import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.JDA;
+import net.dv8tion.jda.api.entities.emoji.Emoji;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.event.EventHandler;
@@ -22,8 +23,7 @@ public class onMinecraftDeath implements Listener {
     @EventHandler
     public void onDeath(PlayerDeathEvent event){
         EmbedBuilder embed = new EmbedBuilder();
-        embed.setDescription(event.getDeathMessage());
-        embed.setAuthor(event.getPlayer().getName(), null ,"https://mc-heads.net/avatar/" + event.getPlayer().getUniqueId() + "/avatar.png");
+        embed.setAuthor(Emoji.fromUnicode("U+1F480") + " ・ " + event.getPlayer().getName(), null ,"https://mc-heads.net/avatar/" + event.getPlayer().getUniqueId() + "/avatar.png");
         embed.setColor(Color.RED);
 
         if (jda.getTextChannelById(config.getString("Discord_ChatID")) == null) {
